@@ -29,8 +29,18 @@ notes.post('/', (req, res) => {
             text,
             note_id: uuid(),
         }
-    }
 
-    readAndAppend(newNote, '')
-    //UP to line 34 of feedback .js
-})
+        readAndAppend(newNote, './db/db.json');
+
+        const response = {
+            status: 'success',
+            body: newNote,
+        };
+
+        res.json(response);
+    } else {
+        res.json('Error in posting feedback');
+    }
+});
+
+module.exports = notes;
